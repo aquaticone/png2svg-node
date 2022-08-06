@@ -1,6 +1,6 @@
 {
-  "name": "esm-starter",
-  "version": "1.0.0",
+  "name": "png2svg-node",
+  "version": "0.1.0",
   "main": "index.js",
   "author": "aquatic <aquaticone@protonmail.com>",
   "license": "MIT",
@@ -22,8 +22,6 @@
     "@babel/eslint-parser": "^7.18.9",
     "@commitlint/config-conventional": "^17.0.3",
     "commitlint": "^17.0.3",
-    "dotenv": "^16.0.1",
-    "dotenv-flow": "^3.2.0",
     "eslint": "^8.20.0",
     "eslint-config-node": "^4.1.0",
     "eslint-config-prettier": "^8.5.0",

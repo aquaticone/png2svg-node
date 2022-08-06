@@ -1,4 +1,2 @@
 node_modules
-.env.production
-.env.local
 .DS_Store
