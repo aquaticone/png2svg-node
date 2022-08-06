@@ -1,7 +1,7 @@
 <div align="center">
   <h1>png2svg-node</h1>
-  <p>👾 1-stop batch conversion of raster graphics to SVG 👾</p>
-  <small>Inspired by <a href="https://codepen.io/shshaw/pen/XbxvNj">Pixels.svg</a></small>
+  <h3>👾 1-stop batch conversion of raster graphics to SVG 👾</h3>
+  <p>Inspired by <a href="https://codepen.io/shshaw/pen/XbxvNj">Pixels.svg</a></p>
 </div>
 
 ## Features
@@ -26,7 +26,7 @@ pnpm convert -i ../input/dir -o ../output/dir
 pnpm convert -i ../input/dir -o ../output/dir -w 24 -h 24
 
 # Resize square graphics
-pnpm convert -i ../input/dir -i ../output/dir -w 24
+pnpm convert -i ../input/dir -o ../output/dir -w 24
 ```
 
 ## Development Setup
