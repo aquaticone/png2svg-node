@@ -1,12 +1,12 @@
 <div align="center">
   <h1>png2svg-node</h1>
   <h3>👾 1-stop batch conversion of raster graphics to SVG 👾</h3>
-  <p>Inspired by <a href="https://codepen.io/shshaw/pen/XbxvNj">Pixels.svg</a></p>
+  <em>Inspired by <a href="https://codepen.io/shshaw/pen/XbxvNj">Pixels.svg</a></em>
 </div>
 
 ## Features
 
-- 💎 High quality pixel-art conversion from PNG to SVG
+- 💎 High-quality pixel art conversion from PNG to SVG
 - 🤖 Batch process entire folders of files with one command
 - 🗂 Retain original directory structure with recursive reads and writes
 - ✨ Built-in SVG optimization with [svgo](https://github.com/svg/svgo)
