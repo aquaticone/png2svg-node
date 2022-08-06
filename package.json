@@ -1,0 +1,47 @@
+{
+  "name": "esm-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "aquatic <aquaticone@protonmail.com>",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "lint": "eslint ./index.js --fix",
+    "format": "prettier --write .",
+    "prepare": "husky install",
+    "release": "standard-version",
+    "release:major": "standard-version --release-as major"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/eslint-parser": "^7.18.9",
+    "@commitlint/config-conventional": "^17.0.3",
+    "commitlint": "^17.0.3",
+    "dotenv": "^16.0.1",
+    "dotenv-flow": "^3.2.0",
+    "eslint": "^8.20.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "standard-version": "^9.5.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --max-warnings=0",
+      "prettier -w"
+    ],
+    "src/**/*.{json,md}": [
+      "prettier -w"
+    ]
+  }
+}
