@@ -1,5 +1,7 @@
 import fs from "fs"
+import os from "os"
 import path from "path"
+import sharp from "sharp"
 import { optimize } from "svgo"
 import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
@@ -36,9 +38,8 @@ yargs(hideBin(process.argv))
   .demandOption(["i", "o"])
   .parse()
 
-async function png2svg({ input, output }) {
+async function png2svg({ input, output, resizeWidth, resizeHeight }) {
   // clean output directory if needed
-  console.log("Cleaning output directory...")
   await fsHelpers.cleanDir(output)
 
   // resolve absolute paths for input and output directoroes
@@ -46,10 +47,22 @@ async function png2svg({ input, output }) {
   const outputDir = path.resolve(process.cwd(), output)
 
   // get all paths from input that need to be processed
-  const allPaths = await fsHelpers.getAllPaths(inputDir)
+  let allPaths = await fsHelpers.getAllPaths(inputDir)
 
-  // start processing paths
-  console.log("Processing paths...")
+  // resize source images if necessary and set allPaths to new tempDir
+  if (resizeWidth || resizeHeight) {
+    try {
+      const tempDir = await fs.promises.mkdtemp(
+        path.join(os.tmpdir(), "png2svg-node")
+      )
+      await processResizing(allPaths, tempDir, resizeWidth, resizeHeight)
+      allPaths = await fsHelpers.getAllPaths(tempDir)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  // process source images to SVG files
   for (let i = 0; i < allPaths.length; i++) {
     const { path, absPath } = allPaths[i]
 
@@ -65,6 +78,28 @@ async function png2svg({ input, output }) {
       }
     } catch (err) {
       console.log(err)
+    }
+  }
+}
+
+async function processResizing(paths, tempDir, width, height) {
+  width = Number(width || height)
+  height = Number(height || width)
+
+  for (let i = 0; i < paths.length; i++) {
+    const { path, absPath } = paths[i]
+    const fullTempPath = `${tempDir}/${path}`
+
+    if (await fsHelpers.isFile(absPath)) {
+      // resize image and write to tempDir
+      console.log(`Resizing image: ${fullTempPath}`)
+      await sharp(absPath)
+        .png()
+        .resize({ width, height, kernel: "nearest" })
+        .toFile(fullTempPath)
+    } else {
+      // directory needs to be created in tempDir
+      await fs.promises.mkdir(`${tempDir}/${path}`, { recursive: true })
     }
   }
 }
