@@ -11,6 +11,7 @@
     "node": ">=16.0.0"
   },
   "scripts": {
+    "convert": "node ./index.js",
     "lint": "eslint ./index.js --fix",
     "format": "prettier --write .",
     "prepare": "husky install",
@@ -41,5 +42,11 @@
     "src/**/*.{json,md}": [
       "prettier -w"
     ]
+  },
+  "dependencies": {
+    "canvas": "^2.9.3",
+    "readdirp": "^3.6.0",
+    "svgo": "^2.8.0",
+    "yargs": "^17.5.1"
   }
 }
